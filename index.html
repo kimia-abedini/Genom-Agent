@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <!-- Keywords for your paper to be indexed by-->
     <meta name="keywords"
-          content="GeneGPT, Genomic Question Answering, Large Language Models, Multi-Agent Systems, Bioinformatics, Genomics, AI in Healthcare, Biomedical Research">
+          content="GeneGPT, Genomic Question Answering, Large Language Models, GeneTuring, Multi-Agent Systems, Bioinformatics, Genomics, AI in Healthcare, Biomedical Research">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -173,49 +173,10 @@
                     </p>
                 </div>
             </div>
-
-            <!-- Image Section (Right) -->
-            <div class="column is-7">
-                <figure class="image is-4by3">
-                    <img src="static/images/HF_documentation.png"
-                         alt="A figure showing that HuggingFace Models are poorly documented"
-                         style="width: 70%; height: auto;"/>
-                </figure>
-            </div>
         </div>
     </div>
 </section>
 
-
-<!--<section class="section hero is-small">-->
-<!--    <div class="container is-max-desktop">-->
-<!--        <div class="columns is-centered">-->
-<!--            <div class="column is-full">-->
-<!--                <div class="content">-->
-<!--                    <h2 class="title is-3">Motivation</h2>-->
-<!--                    <div class="level-set has-text-justified">-->
-<!--                        <p>-->
-<!--                            Our objective is to accurately and efficiently find relevant models in a large repository that can recognize a target concept, e.g., ``Dog''.-->
-<!--                            Instead of using a single representation for the entire model, we represent each model output (logit) separately.-->
-<!--                            However, to validate that logit responses to probes provide an effective description of the semantic function,-->
-<!--                            we present a simple experiment: We take 10 different ViT foundation models,-->
-<!--                            each trained via a different procedure and fine-tune them on the CIFAR10 classification task.-->
-<!--                            We then randomly sample 1,000 ImageNet images as probes and run them through the model,-->
-<!--                            and define the responses of all probes for a specific logit as its descriptor.-->
-<!--                            The correlations between all pairs of logits are present in the correlation matrix below.-->
-<!--                            It is clear that logit responses to probes are mostly correlated to those of logits with a matching semantic concept instead of, for example, logits from the same model.-->
-<!--                        </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="hero-body">-->
-<!--            <img src="static/images/ProbeLog_cifar_visualization.png" alt="A figure showing that HuggingFace Models are poorly documented"/>-->
-<!--        </div>-->
-
-<!--    </div>-->
-<!--</section>-->
 
 
 <section class="section hero is-small is-light">
@@ -223,35 +184,22 @@
         <div class="columns is-centered">
             <div class="column is-full">
                 <div class="content">
-                    <h2 class="title is-3">Logit-level Descriptors</h2>
+                    <h2 class="title is-3">Experiments</h2>
                     <div class="level-set has-text-justified">
                         <p>
                         <p>
-                            We introduce <strong>ProbeLog</strong>, a probing based logit-level descriptor especially
-                            designed for model search.
-                            I.e., ProbeLog represents each model output (logit) separately, instead of using a single
-                            representation for the entire model.
-                            To extract ProbeLog descriptors for a certain logit, we pass a set of <em>n</em> ordered,
-                            fixed input samples (probes) through the model.
-                            Intuitively, these are a set of standardized questions that we ask the model.
-                            In practice, we compose the list of probes by randomly sampling images (without replacement)
-                            from an out-of-distribution image dataset.
+                            Here, we report the performance and cost of <strong>GenomAgent</strong> in GeneTuring tasks compared to GeneGPT's main results.
+                            <strong>GenomAgent</strong> achieves substantial improvements in both performance and computational efficiency.
+                            Our model attains an average score of 0.93, exceeding the best-performing GeneGPT model (0.83).
+                       </p>
+
+                        <p>
+                            In simple tasks (nomenclature and genomic location), our system achieves near-perfect performance with a score of 0.98, surpassing GeneGPT-slim's scores of 0.92 for nomenclature and 0.88 for genomic location.
+                            Most notably, in alignment tasks, which are the most challenging task for GeneGPT, we achieve a remarkable 28.8% improvement.
                         </p>
 
                         <p>
-                            We define the ProbeLog descriptor for logit <em>i</em> of model <em>f</em> as the normalized
-                            responses of all probes at this logit:
-                        </p>
-
-                        <p>
-                            \[
-                            ProbeLog(f,i) = [f(x_1)[i], f(x_2)[i], \cdots, f(x_n)[i]]
-                            \]
-                        </p>
-                        <p>
-                            Comparing between different ProbeLog descriptors can find models that are similar in their
-                            ability to recognize a specific concept.
-                            Next, we show how to use these descriptors to search for models by text.
+                            Computational cost analysis reveals even more striking improvements. <strong>GenomAgent</strong> costs only $2.11 total in all tasks (79.0% reduction from best-performing GeneGPT ($10.06)).
                         </p>
                     </div>
                 </div>
@@ -274,17 +222,7 @@
                     <h2 class="title is-3">Zero-Shot Model Search</h2>
                     <div class="level-set has-text-justified">
                         <p>
-                            Alone, ProbeLog descriptors only provide a way to search by logit, which assumes the user
-                            already has such model.
-                            To enable finding new models, we extend our method to a search by text setting,
-                            where the user can search for concepts by simply naming them in text, making our search
-                            method zero-shot.
-                            To do so, we utilize a multimodal text alignment model (e.g., CLIP) to create for generating
-                            ProbeLog-like descriptors from text alone.
-                            First, we compute the embeddings from each probe as well as the user's description of the
-                            target concept.
-                            We then define the zero-shot ProbeLog descriptor of the target concept as the vector of dot
-                            products between the embeddings of each probe and that of the target text.
+                            In addition, we show <strong>GenomAgent</strong> is the optimal selection, as it achieves a high score at minimal computational expense.
                         </p>
                     </div>
                 </div>
@@ -292,97 +230,12 @@
         </div>
 
         <div class="hero-body">
-            <img src="static/images/zero_shot_ProbeLog.png"
+            <img src="static/images/trade_off.png"
                  alt="A figure showing our zero-shot ProbeLog logit descriptors"/>
         </div>
 
     </div>
 </section>
-
-
-<section class="section hero is-small is-light">
-    <div class="container is-max-desktop">
-        <div class="columns is-centered">
-            <div class="column is-full">
-                <div class="content">
-                    <h2 class="title is-3">Collaborative Probing</h2>
-                    <div class="level-set has-text-justified">
-                        <p>
-                            Lastly, as creating the ProbeLog representations for an entire model repository can be very
-                            costly,
-                            we present Collaborative Probing, a method to reduce the number of probes passed through
-                            each model by 3x.
-                            Instead of probing all models with all probes, we only use a random selection of the probes
-                            for each model, and treat the remaining probes as missing data.
-                            We then complete the missing information with matrix-factorization based collaborative
-                            filtering. We later show this results in greatly improved performance for low probe
-                            numbers.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-body">
-            <img src="static/images/Collaborative_Probing_Diagram.png"
-                 alt="A figure showing illustrating our Collaborative Probing setting"/>
-        </div>
-
-    </div>
-</section>
-
-
-<section class="section hero is-small">
-    <div class="container is-max-desktop">
-        <div class="columns is-centered">
-            <div class="column is-full">
-                <div class="content">
-                    <h2 class="title is-3">Results</h2>
-                    <div class="level-set has-text-justified">
-                        <p>
-                            We showcase ProbeLog's effectiveness on two real-world datasets that we curate:
-                            one based on models that we train for fine-grained logit search evaluation, and the other
-                            containing models that we download from Hugging Face.
-                            Our method is scalable and can handle large models with high effectiveness and efficiency.
-                            It achieves high retrieval accuracy, reaching over 40% top-1 accuracy when predicting
-                            whether a model can recognize an ImageNet target concept from text (where a random
-                            method only scores 0.1%).
-                            Furthermore, we establish the strong performance of our Collaborative Probing approach,
-                            showing it can substantially reduce the number of probes passed through each model.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div id="results-carousel" class="carousel results-carousel">
-                <div class="item"
-                     style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
-                    <img src="static/images/results.png" alt="A table comparing ProbeLog to previous approaches"
-                         style="max-height: 100%; max-width: 100%; object-fit: contain;"/>
-                    <h2 class="subtitle has-text-centered">
-                        <em><b>Search Results.</b></em> We test ProbeLog on real-world and fine-grained model Hubs.
-                        ProbeLog shows impressive top-1 search accuracy, both in search-by-logit and search-by-text
-                        tasks.
-                    </h2>
-                </div>
-                <div class="item">
-                    <div class="image-container">
-                        <img src="static/images/Collaborative_Probing_results.png"
-                             alt="Collaborative Probing results figure"/>
-                    </div>
-                    <h2 class="subtitle has-text-centered">
-                        <em><b>Collaborative Probing Enhancement.</b></em> Collaborative Probing can reduce the number
-                        of needed probes by 3x.
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
 
 <!--BibTex citation -->
 <section class="section" id="BibTeX">
