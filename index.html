@@ -104,7 +104,7 @@
 <section class="hero teaser">
     <div class="container is-max-desktop">
         <div class="hero-body">
-            <img src="static/images/model_search.png" alt="An overview of our method"/>
+            <img src="static/images/GenomAgent.png" alt="An overview of our method"/>
             <h2 class="subtitle has-text-centered">
                 We propose a method for searching models in large model repositories, using solely the weights. Our method can embed each logit of classifier model separately and match that
                 representation with a text prompt. Thus, we can search for models that can recognize a target concept, such as "Dog".
@@ -147,13 +147,11 @@
                 <div class="content">
                     <h2 class="title is-3">Task & Motivation</h2>
                     <p>
-                        Our objective is to accurately and efficiently search for relevant models in a large repository that can recognize a target concept, e.g., ``Dog''.
-                        While existing solutions search approaches rely on the text of the user-uploaded documentation,
-                        our analysis shows that real-world models are often poorly documented.
-                        We observed all 1.2M models cards in
-                        <a href="https://huggingface.co/">Hugging Face</a> and found that 60% of all models have no information in their model cards.
-                        Thus, we aim to search for new models based on their weights alone,
-                        without assuming access to the training data or metadata.
+                        Comprehending genomic information is essential for biomedical research, yet extracting data from complex distributed databases remains challenging. 
+                        Large language models (LLMs) offer potential for genomic \acf{QA} but face limitations due to restricted access to domain-specific databases. 
+                        GeneGPT is the current state-of-the-art system that enhances LLMs by utilizing specialized API calls, though it is constrained by rigid API dependencies and limited adaptability. 
+                        We replicate GeneGPT and propose GenomAgent, a multi-agent framework that efficiently coordinates specialized agents for complex genomics queries. 
+                        Evaluated on nine tasks from the GeneTuring benchmark, GenomAgent outperforms GeneGPT by 12\% on average, and its flexible architecture extends beyond genomics to various scientific domains needing expert knowledge extraction.
                     </p>
                 </div>
             </div>
@@ -346,8 +344,7 @@
     <div class="container is-max-desktop content">
         <pre>
             <h2 class="title">BibTeX</h2>
-            <code>
-        @misc{kim,
+            <code>@misc{kim,
             title={From Single to Multi-Agent Reasoning: Advancing GeneGPT for Genomics QA},
             author={Jonathan Kahana and Or Nathan and Eliahu Horwitz and Yedid Hoshen},
             year={2025},
