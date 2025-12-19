@@ -155,21 +155,19 @@
     <div class="container is-max-desktop">
         <div class="columns is-vcentered">
             <!-- Text Section (Left) -->
-            <div class="column is-6">
+            <div class="column is-full">
                 <div class="content">
                     <h2 class="title is-3">Task & Motivation</h2>
                     <p>
-                        Comprehending genomic information is essential for biomedical research, yet extracting data from
-                        complex distributed databases remains challenging.
-                        Large language models (LLMs) offer potential for genomic \acf{QA} but face limitations due to
-                        restricted access to domain-specific databases.
-                        GeneGPT is the current state-of-the-art system that enhances LLMs by utilizing specialized API
-                        calls, though it is constrained by rigid API dependencies and limited adaptability.
-                        We replicate GeneGPT and propose GenomAgent, a multi-agent framework that efficiently
-                        coordinates specialized agents for complex genomics queries.
-                        Evaluated on nine tasks from the GeneTuring benchmark, GenomAgent outperforms GeneGPT by 12\% on
-                        average, and its flexible architecture extends beyond genomics to various scientific domains
-                        needing expert knowledge extraction.
+                        The objective is to enable LLMs to comprehend and extract expert knowledge from complex, distributed genomic databases to answer natural language queries.
+                    </p>
+                    <p>
+                        The work motivated by several limitations inherent in standard LLMs and the current state-of-the-art system, <i>GeneGPT</i>:
+                    </p>
+                    <p>
+                        1. Complexity of Genomic Data: Extracting data from distributed biomedical databases remains a significant challenge for researchers. Standard LLMs struggle with this because they have restricted access to domain-specific databases5.
+                        2. Fragility of Existing Systems (GeneGPT): While GeneGPT is effective, it relies on a single-agent architecture with rigid dependencies on specific API formats. This makes the system fragile when interfacing with evolving tools.
+                        3. Context and Focus Issues: GeneGPT relies on extensive context windows, which can lead to "attention dilution" where the model loses focus on the original query.
                     </p>
                 </div>
             </div>
@@ -207,7 +205,7 @@
         </div>
 
         <div class="hero-body">
-            <img src="static/images/ProbeLog.png" alt="A figure showing our ProbeLog logit descriptors"/>
+            <img src="static/images/results.png" alt="A figure showing our ProbeLog logit descriptors"/>
         </div>
 
     </div>
@@ -219,10 +217,11 @@
         <div class="columns is-centered">
             <div class="column is-full">
                 <div class="content">
-                    <h2 class="title is-3">Zero-Shot Model Search</h2>
+                    <h2 class="title is-3">Performance-cost tradeoff on GeneTuring.</h2>
                     <div class="level-set has-text-justified">
                         <p>
                             In addition, we show <strong>GenomAgent</strong> is the optimal selection, as it achieves a high score at minimal computational expense.
+                            Bubble size shows normalized cost and High Value Region shows optimal performance at minimal cost.
                         </p>
                     </div>
                 </div>
@@ -240,19 +239,16 @@
 <!--BibTex citation -->
 <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
-        <pre>
-            <h2 class="title">BibTeX</h2>
-            <code>
-                @misc{kim,
-            title={From Single to Multi-Agent Reasoning: Advancing GeneGPT for Genomics QA},
-            author={Kimia Abedini, Farzad Shami and Gianmaria Silvello},
-            year={2025},
-            eprint={2502.xxxx},
-            archivePrefix={arXiv},
-            primaryClass={cs.LG},
-            url={https://arxiv.org/abs/2502.xxxx}
-        }</code>
-        </pre>
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@misc{kim2025single,
+  title={From Single to Multi-Agent Reasoning: Advancing GeneGPT for Genomics QA},
+  author={Abedini, Kimia and Shami, Farzad and Silvello, Gianmaria},
+  year={2025},
+  eprint={2502.xxxx},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
+  url={https://arxiv.org/abs/2502.xxxx}
+}</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->

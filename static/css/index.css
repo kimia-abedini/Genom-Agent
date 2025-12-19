@@ -137,5 +137,18 @@ body {
   font-size: smaller;
 }
 
+/* Add this to your stylesheet */
+#BibTeX pre {
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: auto; /* Handles long lines on mobile */
+}
 
+#BibTeX .title {
+    margin-bottom: 20px;
+}
 
