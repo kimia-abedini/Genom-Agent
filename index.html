@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="We propose a new method that searches for suitable models in a large model repository based on  a text prompt.">
+    <meta property="og:title" content="Can this Model Also Recognize Dogs? Zero-Shot Model Search from Weights"/>
+    <meta property="og:description" content="We propose a new method that searches for suitable models in a large model repository based on  a text prompt."/>
+    <meta property="og:url" content="https://vision.huji.ac.il/probelog/"/>
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/probelog_banner.png"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="500"/>
+
+
+    <meta name="twitter:title" content="Can this Model Also Recognize Dogs? Zero-Shot Model Search from Weights">
+    <meta name="twitter:description" content="We propose a new method that searches for suitable models in a large model repository based on  a text prompt.">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/probelog_banner.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="Model Search, Weight Space Learning, ProbeLog, Probing">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Can this Model Also Recognize Dogs? Zero-Shot Model Search from Weights</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">Can this Model Also Recognize Dogs? Zero-Shot Model Search from Weights</h1>
+                    <div class="is-size-5 publication-authors">
+                        <!-- Paper authors -->
+                        <span class="author-block">
+                            <a href="https://pages.cs.huji.ac.il/jonkahana/" target="_blank">Jonathan Kahana</a>,</span>
+                        <span class="author-block">
+                            <a href="https://www.linkedin.com/in/or-nathan-a11508336/" target="_blank">Or Nathan</a>,</span>
+                        <span class="author-block">
+                            <a href="https://horwitz.ai/" target="_blank">Eliahu Horwitz</a>,</span>
+                        <span class="author-block">
+                            <a href="https://www.cs.huji.ac.il/~yedid/" target="_blank">Yedid Hoshen</a></span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">Hebrew University of Jerusalem</span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- Arxiv PDF link -->
+                            <span class="link-block">
+                        <a href="https://arxiv.org/pdf/2502.09619.pdf" target="_blank"
+                           class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                            <!-- Github link -->
+                            <span class="link-block">
+                    <a href="https://github.com/jonkahana/ProbeLog_Descriptors" target="_blank"
+                       class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon!)</span>
+                  </a>
+                </span>
+
+                            <!-- ArXiv abstract Link -->
+                            <span class="link-block">
+                  <a href="https://arxiv.org/abs/2502.09619" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Teaser Image-->
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+        <div class="hero-body">
+            <img src="static/images/model_search.png" alt="An overview of our method"/>
+            <h2 class="subtitle has-text-centered">
+                We propose a method for searching models in large model repositories, using solely the weights. Our method can embed each logit of classifier model separately and match that
+                representation with a text prompt. Thus, we can search for models that can recognize a target concept, such as "Dog".
+            </h2>
+        </div>
+    </div>
+</section>
+<!-- End teaser Image -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        With the increasing numbers of publicly available models, there are probably pre-trained, online models for most tasks users require. However, current model search methods are
+                        rudimentary, essentially a text-based search in the documentation, thus users cannot find the relevant models. This paper presents ProbeLog, a method for retrieving
+                        classification models that can recognize a target concept, such as "Dog", without access to model metadata or training data. Differently from previous probing methods, ProbeLog
+                        computes a descriptor for each output dimension (logit) of each model, by observing its responses on a fixed set of inputs (probes). Our method supports both logit-based
+                        retrieval ("find more logits like this") and zero-shot, text-based retrieval ("find all logits corresponding to dogs"). As probing-based representations require multiple costly
+                        feedforward passes through the model, we develop a method, based on collaborative filtering, that reduces the cost of encoding repositories by 3x. We demonstrate that
+                        ProbeLog achieves high retrieval accuracy, both in real-world and fine-grained search tasks and is scalable to full-size repositories.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-vcentered">
+            <!-- Text Section (Left) -->
+            <div class="column is-6">
+                <div class="content">
+                    <h2 class="title is-3">Task & Motivation</h2>
+                    <p>
+                        Our objective is to accurately and efficiently search for relevant models in a large repository that can recognize a target concept, e.g., ``Dog''.
+                        While existing solutions search approaches rely on the text of the user-uploaded documentation,
+                        our analysis shows that real-world models are often poorly documented.
+                        We observed all 1.2M models cards in
+                        <a href="https://huggingface.co/">Hugging Face</a> and found that 60% of all models have no information in their model cards.
+                        Thus, we aim to search for new models based on their weights alone,
+                        without assuming access to the training data or metadata.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Image Section (Right) -->
+            <div class="column is-7">
+                <figure class="image is-4by3">
+                    <img src="static/images/HF_documentation.png" alt="A figure showing that HuggingFace Models are poorly documented" style="width: 70%; height: auto;"/>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--<section class="section hero is-small">-->
+<!--    <div class="container is-max-desktop">-->
+<!--        <div class="columns is-centered">-->
+<!--            <div class="column is-full">-->
+<!--                <div class="content">-->
+<!--                    <h2 class="title is-3">Motivation</h2>-->
+<!--                    <div class="level-set has-text-justified">-->
+<!--                        <p>-->
+<!--                            Our objective is to accurately and efficiently find relevant models in a large repository that can recognize a target concept, e.g., ``Dog''.-->
+<!--                            Instead of using a single representation for the entire model, we represent each model output (logit) separately.-->
+<!--                            However, to validate that logit responses to probes provide an effective description of the semantic function,-->
+<!--                            we present a simple experiment: We take 10 different ViT foundation models,-->
+<!--                            each trained via a different procedure and fine-tune them on the CIFAR10 classification task.-->
+<!--                            We then randomly sample 1,000 ImageNet images as probes and run them through the model,-->
+<!--                            and define the responses of all probes for a specific logit as its descriptor.-->
+<!--                            The correlations between all pairs of logits are present in the correlation matrix below.-->
+<!--                            It is clear that logit responses to probes are mostly correlated to those of logits with a matching semantic concept instead of, for example, logits from the same model.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="hero-body">-->
+<!--            <img src="static/images/ProbeLog_cifar_visualization.png" alt="A figure showing that HuggingFace Models are poorly documented"/>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</section>-->
+
+
+<section class="section hero is-small is-light">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full">
+                <div class="content">
+                    <h2 class="title is-3">Logit-level Descriptors</h2>
+                    <div class="level-set has-text-justified">
+                        <p>
+                        <p>
+                            We introduce <strong>ProbeLog</strong>, a probing based logit-level descriptor especially designed for model search.
+                            I.e., ProbeLog represents each model output (logit) separately, instead of using a single representation for the entire model.
+                            To extract ProbeLog descriptors for a certain logit, we pass a set of <em>n</em> ordered, fixed input samples (probes) through the model.
+                            Intuitively, these are a set of standardized questions that we ask the model.
+                            In practice, we compose the list of probes by randomly sampling images (without replacement) from an out-of-distribution image dataset.
+                        </p>
+
+                        <p>
+                            We define the ProbeLog descriptor for logit <em>i</em> of model <em>f</em> as the normalized responses of all probes at this logit:
+                        </p>
+
+                        <p>
+                            \[
+                            ProbeLog(f,i) = [f(x_1)[i], f(x_2)[i], \cdots, f(x_n)[i]]
+                            \]
+                        </p>
+                        <p>
+                            Comparing between different ProbeLog descriptors can find models that are similar in their ability to recognize a specific concept.
+                            Next, we show how to use these descriptors to search for models by text.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-body">
+            <img src="static/images/ProbeLog.png" alt="A figure showing our ProbeLog logit descriptors"/>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section hero is-small">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full">
+                <div class="content">
+                    <h2 class="title is-3">Zero-Shot Model Search</h2>
+                    <div class="level-set has-text-justified">
+                        <p>
+                            Alone, ProbeLog descriptors only provide a way to search by logit, which assumes the user already has such model.
+                            To enable finding new models, we extend our method to a search by text setting,
+                            where the user can search for concepts by simply naming them in text, making our search method zero-shot.
+                            To do so, we utilize a multimodal text alignment model (e.g., CLIP) to create for generating ProbeLog-like descriptors from text alone.
+                            First, we compute the embeddings from each probe as well as the user's description of the target concept.
+                            We then define the zero-shot ProbeLog descriptor of the target concept as the vector of dot products between the embeddings of each probe and that of the target text.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-body">
+            <img src="static/images/zero_shot_ProbeLog.png" alt="A figure showing our zero-shot ProbeLog logit descriptors"/>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section hero is-small is-light">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full">
+                <div class="content">
+                    <h2 class="title is-3">Collaborative Probing</h2>
+                    <div class="level-set has-text-justified">
+                        <p>
+                            Lastly, as creating the ProbeLog representations for an entire model repository can be very costly,
+                            we present Collaborative Probing, a method to reduce the number of probes passed through each model by 3x.
+                            Instead of probing all models with all probes, we only use a random selection of the probes for each model, and treat the remaining probes as missing data.
+                            We then complete the missing information with matrix-factorization based collaborative filtering. We later show this results in greatly improved performance for low probe
+                            numbers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-body">
+            <img src="static/images/Collaborative_Probing_Diagram.png" alt="A figure showing illustrating our Collaborative Probing setting"/>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section hero is-small">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full">
+                <div class="content">
+                    <h2 class="title is-3">Results</h2>
+                    <div class="level-set has-text-justified">
+                        <p>
+                            We showcase ProbeLog's effectiveness on two real-world datasets that we curate:
+                            one based on models that we train for fine-grained logit search evaluation, and the other containing models that we download from Hugging Face.
+                            Our method is scalable and can handle large models with high effectiveness and efficiency.
+                            It achieves high retrieval accuracy, reaching over 40% top-1 accuracy when predicting whether a model can recognize an ImageNet target concept from text (where a random
+                            method only scores 0.1%).
+                            Furthermore, we establish the strong performance of our Collaborative Probing approach, showing it can substantially reduce the number of probes passed through each model.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="results-carousel" class="carousel results-carousel">
+                <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <img src="static/images/results.png" alt="A table comparing ProbeLog to previous approaches" style="max-height: 100%; max-width: 100%; object-fit: contain;"/>
+                    <h2 class="subtitle has-text-centered">
+                        <em><b>Search Results.</b></em> We test ProbeLog on real-world and fine-grained model Hubs.
+                        ProbeLog shows impressive top-1 search accuracy, both in search-by-logit and search-by-text tasks.
+                    </h2>
+                </div>
+                <div class="item">
+                    <div class="image-container">
+                        <img src="static/images/Collaborative_Probing_results.png" alt="Collaborative Probing results figure"/>
+                    </div>
+                    <h2 class="subtitle has-text-centered">
+                        <em><b>Collaborative Probing Enhancement.</b></em> Collaborative Probing can reduce the number of needed probes by 3x.
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!--BibTex citation -->
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+        <pre>
+            <h2 class="title">BibTeX</h2>
+            <code>
+      @misc{kahana2025modelrecognizedogszeroshot,
+            title={Can this Model Also Recognize Dogs? Zero-Shot Model Search from Weights},
+            author={Jonathan Kahana and Or Nathan and Eliahu Horwitz and Yedid Hoshen},
+            year={2025},
+            eprint={2502.09619},
+            archivePrefix={arXiv},
+            primaryClass={cs.LG},
+            url={https://arxiv.org/abs/2502.09619}
+            }</code>
+        </pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+
+                    <p>
+                        This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted
+                        from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                        You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"
+                                                                                                                                                                                    href="http://creativecommons.org/licenses/by-sa/4.0/"
+                                                                                                                                                                                    target="_blank">Creative
+                        Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Statcounter tracking code -->
+
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+<!-- End of Statcounter Code -->
+
+</body>
+</html>
